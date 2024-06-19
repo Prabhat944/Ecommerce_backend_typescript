@@ -19,7 +19,7 @@ const schema = new mongoose.Schema({
         required: [true, "Please enter product stock"]
     },
     category:{
-        type: Number,
+        type: String,
         required: [true, "Please enter product Category"],
         trim:true
     },

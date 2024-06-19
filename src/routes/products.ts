@@ -9,7 +9,7 @@ const app = express.Router();
 
 
 //create new product /api/v1/product/new
-app.post("/new",adminOnly,newProduct);
+app.post("/new",adminOnly,singleUpload,newProduct);
 
 //To get all products with filters  /api/v1/product/all
 app.get("/all", getAllProducts);
