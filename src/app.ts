@@ -5,6 +5,7 @@ import NodeCache from "node-cache";
 import {config} from 'dotenv';
 import {connectDB} from "./utils/features.js"
 import userRoute from './routes/user.js';
+import userProduct from "./routes/products.js";
 import { ErrorMiddleWare } from "./middlewares/error.js";
 
 config({
@@ -12,7 +13,7 @@ config({
 })
 const port = process.env.PORT || 4000;
 const mongoURI = process.env.MONGO_URI || "";
-const stripeKey = process.env.STRIPE_KEY || "";
+// const stripeKey = process.env.STRIPE_KEY || "";
 
 connectDB(mongoURI);
 export const myCache = new NodeCache();
@@ -23,6 +24,7 @@ app.use(morgan("dev"));
 app.use(cors());
 
 app.use("/api/v1/user",userRoute);
+app.use("/api/v1/product",userProduct);
 app.use(ErrorMiddleWare);
 app.get('/',(req,res)=>{
     res.send("API is working fine with /api/v1");

@@ -4,7 +4,7 @@ import ErrorHandler from "../utils/utility-class.js";
 
 export const ErrorMiddleWare = (
     err:ErrorHandler,
-    red:Request,
+    req:Request,
     res:Response,
     next:NextFunction
 ) => {
