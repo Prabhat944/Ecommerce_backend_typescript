@@ -10,7 +10,6 @@ import { myCache } from "../app.js";
 export const newOrder = TryCatch(async(req:Request<{},{},NewOrderRequestBody>,res,next:NextFunction)=>{
     const {shippingInfo,orderItems,user,subTotal,tax,shippingCharges,discount,total} = req.body;
 
-    console.log("tag",{shippingInfo,orderItems,user,subTotal,tax,shippingCharges,discount,total})
     if(!shippingInfo || !orderItems || !user || !subTotal || !tax || !shippingCharges || !discount || !total)
         return next(new ErrorHandler("Please Enter all fields",400));
 
@@ -36,7 +35,7 @@ export const newOrder = TryCatch(async(req:Request<{},{},NewOrderRequestBody>,re
 
 export const myOrders = TryCatch(async (req,res,next) => {
     const {id:user} = req.query;
-    console.log(user)
+    
     const key =`my-orders-${user}`;
 
     let orders = [];

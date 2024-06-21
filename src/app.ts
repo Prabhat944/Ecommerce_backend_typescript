@@ -8,6 +8,8 @@ import userRoute from './routes/user.js';
 import userProduct from "./routes/products.js";
 import userOrder from "./routes/order.js";
 import { ErrorMiddleWare } from "./middlewares/error.js";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
 config({
     path:"./.env"
@@ -19,6 +21,13 @@ const mongoURI = process.env.MONGO_URI || "";
 connectDB(mongoURI);
 export const myCache = new NodeCache();
 const app = express();
+
+// Serve static files from the 'uploads' directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(dirname(__filename));
+console.log("fil",__filename)
+console.log("dir",__dirname)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(express.json());
 app.use(morgan("dev"));
