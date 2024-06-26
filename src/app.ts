@@ -7,6 +7,8 @@ import {connectDB} from "./utils/features.js"
 import userRoute from './routes/user.js';
 import userProduct from "./routes/products.js";
 import userOrder from "./routes/order.js";
+import paymentRoute from "./routes/payment.js";
+import dashboardRoute from "./routes/stats.js"
 import { ErrorMiddleWare } from "./middlewares/error.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -36,6 +38,8 @@ app.use(cors());
 app.use("/api/v1/user",userRoute);
 app.use("/api/v1/product",userProduct);
 app.use("/api/v1/order",userOrder);
+app.use("/api/v1/payment",paymentRoute);
+app.use("/api/v1/dashboard",dashboardRoute);
 app.use(ErrorMiddleWare);
 app.get('/',(req,res)=>{
     res.send("API is working fine with /api/v1");
