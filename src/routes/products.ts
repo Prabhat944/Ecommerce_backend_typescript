@@ -1,5 +1,5 @@
 import express from "express";
-import { deleteProduct, getAdminProducts, getAllCategories, getAllProducts, getLatestproject, getSingleProduct, newProduct, updateProduct } from "../controllers/product.js";
+import { deleteProduct, getAdminProducts, getAllCategories, getAllProducts, getLatestproject, getSingleProduct, newProduct, updateProduct, createRandomProduct } from "../controllers/product.js";
 import { adminOnly } from "../middlewares/auth.js";
 import { singleUpload } from "../middlewares/multer.js";
 
@@ -28,5 +28,9 @@ app.route("/:id")
    .get(getSingleProduct)
    .put(adminOnly,singleUpload,updateProduct)
    .delete(adminOnly,deleteProduct)
+
+
+//To generate random Product for testing
+app.post("/create-random", adminOnly, createRandomProduct);
 
 export default app;

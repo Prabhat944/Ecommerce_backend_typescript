@@ -178,6 +178,15 @@ export const getAllProducts = TryCatch(async(req:Request<{},{},{}, SearchRequest
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
+export const createRandomProduct = TryCatch(async(req,res,next)=>{
+    const {count} = req.body;
+
+    const products = await generateRandomProducts(count);
+    res.status(201).json({
+        success:true,
+        products
+    })
+});
 
 const generateRandomProducts = async (count: number = 10) => {
   const products = [];
@@ -197,9 +206,10 @@ const generateRandomProducts = async (count: number = 10) => {
     products.push(product);
   }
 
-  await Product.create(products);
+  const allNewList = await Product.create(products);
 
   console.log({ succecss: true });
+  return allNewList;
 };
 
 const deleteRandomsProducts = async (count: number = 10) => {
